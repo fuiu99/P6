@@ -245,6 +245,8 @@ draw(){
     }
 
     changeActivePlayer() {
+
+        // salut 
         if (this.players[0].active) {
 
             this.players[0].active = false;
@@ -254,7 +256,7 @@ draw(){
             this.players[0].active = true;
         }
     }
-
+ 
 
 }
 
