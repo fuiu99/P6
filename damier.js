@@ -75,14 +75,26 @@ class Damier {
 }
 }
 
-takeGun(){
+getArmeInCell(x,y){
 
-    // si une arme a les mêmes coordonnées qu'une case de déplacement, au click on ajoute dans l'objet player les coordonnées de l'arme sur lequel on click.
-    // on fait un balayage de  defineMovableCells()
+    return this.damier[x][y].objet ;
+    
+}
 
-    for (let i = 0; i < this.cellsMovable; i++) {
+takeGun(gun){
+
+    let playerGun = this.getActivePlayer().arme
+    if (playerGun){
+        playerGun.x = this.getActivePlayer().x
+        playerGun.y = this.getActivePlayer().y
+        this.damier[this.getActivePlayer().coord.x][this.getActivePlayer().coord.y].objet = playerGun
+
+    }else {
+        this.damier[this.getActivePlayer().coord.x][this.getActivePlayer().coord.y].objet = false
     }
-
+    this.getActivePlayer().arme = gun
+    console.log(this.getActivePlayer())
+    console.log(this.damier)
 }
 
 // place le joueur numéro "joueur" (obj player)
@@ -178,7 +190,7 @@ draw(){
             let colonne = "<td class='" + cellMovableClass + "' id='" + celluleID + "' data-x='" + i + "'  data-y='" + j +"'></td>"
 
             if(cell.objet!=false){
-                colonne = `<td class="${cellMovableClass}" id="${celluleID}">
+                colonne = `<td class="${cellMovableClass}" id="${celluleID}" data-x="${i}" data-y="${j}">
                 <img src='image/${cell.objet.image}'>
                 </td>`
             }
@@ -212,11 +224,15 @@ draw(){
 
         document.querySelectorAll(".movable").forEach((cellMovable)=>{
             cellMovable.addEventListener("click",()=>{
-
+                console.log(cellMovable)
                 this.resetMovableCells()
             
 
                 this.changeCoordActifPlayer(cellMovable.dataset.x, cellMovable.dataset.y)
+                const armeInCell = this.getArmeInCell(cellMovable.dataset.x, cellMovable.dataset.y)
+                 if (armeInCell != false){
+                 this.takeGun (armeInCell)
+                 }
                 this.changeActivePlayer()
                 this.defineMovableCells()
                 this.draw()
