@@ -75,6 +75,7 @@ class Damier {
 }
 }
 
+
 getArmeInCell(x,y){
 
     return this.damier[x][y].objet ;
@@ -93,9 +94,33 @@ takeGun(gun){
         this.damier[this.getActivePlayer().coord.x][this.getActivePlayer().coord.y].objet = false
     }
     this.getActivePlayer().arme = gun
+    this.changeGunView()
     console.log(this.getActivePlayer())
     console.log(this.damier)
+
 }
+
+changeGunView() {
+        //je récupère l'objet arme du joureur actif dans une variable   
+    let viewGun = this.getActivePlayer().arme
+    //j'affiche l'arme avec queryselector dans le DOM
+    const image = document.querySelector("."+ this.getActivePlayer().nom + " .arme");
+    image.setAttribute("src", "image/" + viewGun.image);
+        console.log(image)
+
+
+} 
+
+changeGunImage(element) {
+    let image = element.getElementsByTagName("armeJ1").item(0);
+    let imagAttr = image.getAttribute("src");
+    if (imagAttr == "image/arme0.png")
+        {imagAttr = ""}
+  else{
+        imagAttr = "image/arme0.png";
+        image.setAttribute("src", v);}
+}
+
 
 // place le joueur numéro "joueur" (obj player)
  placerPlayer(joueur){
@@ -168,16 +193,7 @@ takeGun(gun){
                     }
         }
 
- dump() {
-
-    for (let i = 0; i < this.taille; i++) {
-        for (let j = 0; j < this.taille; j++) {
-            let cell = this.damier[i][j];
-            affiche(cell.terrain + "-" + cell.objet + " ");
-        }
-        affiche("<br/>");
-    }
-}
+ 
 
 draw(){
     document.querySelector("#damierDOM").innerHTML = "";
@@ -212,10 +228,10 @@ draw(){
 
 
             ligne += colonne
-            affiche(cell.terrain + "-" + cell.objet + " ");
-            affiche(cell.terrain + "-" + cell.joueur + " ");
-            affiche(cell.terrain + "-" + cell.terrain + " ");
-            affiche(muret)
+            // affiche(cell.terrain + "-" + cell.objet + " ");
+            // affiche(cell.terrain + "-" + cell.joueur + " ");
+            // affiche(cell.terrain + "-" + cell.terrain + " ");
+            // affiche(muret)
 
         }
         ligne += "</tr>"
@@ -226,23 +242,23 @@ draw(){
             cellMovable.addEventListener("click",()=>{
                 console.log(cellMovable)
                 this.resetMovableCells()
-            
-
                 this.changeCoordActifPlayer(cellMovable.dataset.x, cellMovable.dataset.y)
                 const armeInCell = this.getArmeInCell(cellMovable.dataset.x, cellMovable.dataset.y)
                  if (armeInCell != false){
                  this.takeGun (armeInCell)
+
                  }
                 this.changeActivePlayer()
                 this.defineMovableCells()
                 this.draw()
+                
+
             })
         })
 
     }
 
 }
-
     changeCoordActifPlayer(x,y){
         let playerActif= this.getActivePlayer();
         this.damier[playerActif.coord.x][playerActif.coord.y].joueur=false;

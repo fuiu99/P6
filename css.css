@@ -67,7 +67,7 @@ img {
     margin-left: 150px;
 }
 
-#joueur1 {
+.joueur1 {
     display: grid;
     grid-template-columns: 100px 100px;
     grid-gap: 5px;
@@ -75,7 +75,7 @@ img {
     margin: 50px;
 }
 
-#joueur2 {
+.joueur2 {
     display: grid;
     grid-template-columns: 100px 100px;
     grid-gap: 5px;

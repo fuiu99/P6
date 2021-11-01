@@ -28,9 +28,9 @@ function init(){
 
    let armurerie = initArme();  // on créé notre armurerie ! = un array d'arme
 
-   let joueur1 = new player("joueurVert", `player1.png`, false, 100, {x:0,y:0})  // création d'un  player (avec coordonée 0;0)
+   let joueur1 = new player("joueur1", `player1.png`, false, 100, {x:0,y:0})  // création d'un  player (avec coordonée 0;0)
 
-   let joueur2 = new player("joueurBleu", `player2.png`, false, 100, {x:0,y:0})  // création d'un  player (avec coordonée 0;0)
+   let joueur2 = new player("joueur2", `player2.png`, false, 100, {x:0,y:0})  // création d'un  player (avec coordonée 0;0)
 
    let damier = new Damier()    // instanciation = création d'un nouveau damier VIDE
 
@@ -49,7 +49,6 @@ function init(){
    damier.defineMovableCells()
    
 
-   damier.dump();  // mode matrice
 
    damier.draw()   // remplir le table damierDOM !
 
