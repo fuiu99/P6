@@ -4,51 +4,52 @@
     <meta charset="utf-8">
     <title> Jeu tour par tour</title>
     <link rel="stylesheet" href="css.css">
-	
-
- 
   </head>
 
   <body>
-
-    <div id= "afficher"> </div>
-    <div id= "zoneJeu">
-        <h1> Combat tour par tour</h1>
-        
-        <div class= "page">
-
-        <table id ="damierDOM" >  </table>
-
-        <div class ="etiquette">
-        <div id= "titre">Score</div>
-        <div class = "joueur1"> 
-          <img id = "p1" src="image/player1.png" alt="imageJoueur1"> 
-          <img class = "arme" id="armeJ1" src="image/arme0.png" alt="imageArmePoignard">
-          <p id= "score">Score J1</p> 
-          <p id="scoreJ1" > calcul du score </p>
+    <div id="afficher"> </div>
+    <div id="zoneJeu">
+      <h1> Combat tour par tour</h1>
+      <div class="page">
+        <div class="damierContainer">
+          <table id="damierDOM"> </table>
+          <div class="damierinactif"> </div>
         </div>
-
+        <div class="etiquette">
+          <div id="titre">Score</div>
+          <div class="joueur1">
+            <img class="imagePlayer" id="p1" src="image/player1.png"
+              alt="imageJoueur1">
+            <img class="arme" id="armeJ1" src="image/arme0.png"
+              alt="imageArmePoignard">
+            <p id="titreScore">Score J1</p>
+            <input class="score" type="text" readonly>
+            <div class="buttonFight">
+              <button class="buttonAttaquer" type="button">Attaquer</button>
+              <button class="buttonDefendre" type="button">Défendre</button>
+            </div>
+          </div>
           <br>
-
-          <div class = "joueur2"> 
-            <img id = "p2" src="image/player2.png" alt="imageJoueur2"> 
-            <img class = "arme" id="armeJ2" src="image/arme0.png" alt="imageArmePoignard">
-            <p id= "score">Score J2</p> 
-            <p id="scoreJ2" > calcul du score </p>
+          <div class="joueur2">
+            <img class="imagePlayer" id="p2" src="image/player2.png"
+              alt="imageJoueur2">
+            <img class="arme" id="armeJ2" src="image/arme0.png"
+              alt="imageArmePoignard">
+            <p id="titreScore">Score J2</p>
+            <input class="score" type="text" readonly>
+            <div class="buttonFight">
+              <button class="buttonAttaquer" type="button">Attaquer</button>
+              <button class="buttonDefendre" type="button">Défendre</button>
+            </div>
+          </div>
         </div>
-
+      </div>
     </div>
-
-    </div>
-    </div>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
-  <script  src="lib.js"></script>
-	<script  src="arme.js"></script>
-	<script  src="damier.js"></script>
-	<script  src="player.js"></script>
-  <script src="init.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+    <script src="lib.js"></script>
+    <script src="arme.js"></script>
+    <script src="damier.js"></script>
+    <script src="player.js"></script>
+    <script src="init.js"></script>
   </body>
-
 </html>
