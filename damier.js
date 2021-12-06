@@ -127,8 +127,7 @@ class Damier {
         initScore.value = player.pointDeVie;
     }
 
-    initFightButtons(player) {
-        console.log('initFightButtons');
+    initFightButtons() {
         const attaquerButtons = document.querySelectorAll(".buttonAttaquer");
         attaquerButtons.forEach((button) => {
             button.addEventListener("click", () => {
@@ -275,7 +274,7 @@ class Damier {
     }
 
     /**
-     * Changement de coord du joueur actif
+     * Changement de coordonnées du joueur actif
      * @param {*} x 
      * @param {*} y 
      */
@@ -286,8 +285,6 @@ class Damier {
         playerActif.coord.y = parseInt(y)
         this.damier[playerActif.coord.x][playerActif.coord.y].joueur = playerActif;
     }
-
-
     /**
      * 
      * @returns player
