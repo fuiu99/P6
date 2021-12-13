@@ -8,6 +8,7 @@ class player {
         this.cellMovable =[];
         this.arme = null;
         this.defense = false;
+        this.attaquer = false;
     }
 }
 

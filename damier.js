@@ -26,7 +26,6 @@ class Damier {
     }
 
     placerDecor() {
-        let startdecor = 0;
         for (let i = 0; i < 5; i++) {
             let go = false;
             while (go == false) {
@@ -34,15 +33,12 @@ class Damier {
                 if (this.damier[pt.x][pt.y].terrain == 0 && this.damier[pt.x][pt.y].joueur === false && this.damier[pt.x][pt.y].objet === false) {
                     this.damier[pt.x][pt.y].terrain = muret; 
                     go = true;
-                } else {
-                    startdecor++;
-                }
+                } 
             }
         }
     }
 
     placerArme(armurerie) {
-        let startarme = 0;
         for (let i = 0; i < 5; i++) {
             let go = false;
             while (go == false) {
@@ -53,9 +49,7 @@ class Damier {
                     armurerie[i].coord.y = pt.y;
                     this.armes.push(armurerie[i]);
                     go = true;
-                } else {
-                    startarme++;
-                }
+                } 
             }
         }
     }
@@ -131,14 +125,15 @@ class Damier {
         const attaquerButtons = document.querySelectorAll(".buttonAttaquer");
         attaquerButtons.forEach((button) => {
             button.addEventListener("click", () => {
-                console.log("j'attaque");
                 const secondPlayer = this.getSecondPlayer();
                 const actifPlayer = this.getActivePlayer();
-                if (secondPlayer.defense) {
-                    secondPlayer.pointDeVie -= actifPlayer.arme.degat / 2;
+
+                if (secondPlayer.defendre) {
+                    secondPlayer.pointDeVie -= actifPlayer.arme.degat/2;
                 } else {
                     secondPlayer.pointDeVie -= actifPlayer.arme.degat;
                 }
+                secondPlayer.defendre = false;
                 this.initScorePlayer(secondPlayer)
                 if (secondPlayer.pointDeVie <= 0) {
                     alert('Jeu terminé')
@@ -151,9 +146,10 @@ class Damier {
         const defendreButtons = document.querySelectorAll(".buttonDefendre");
         defendreButtons.forEach((button) => {
             button.addEventListener("click", () => {
-                console.log("je défends")
+                const secondPlayer = this.getSecondPlayer();
                 const actifPlayer = this.getActivePlayer();
-                actifPlayer.defense = true;
+                actifPlayer.defendre = true;
+                secondPlayer.defendre = false;
                 this.changeActivePlayer();
                 this.showButton();
             })
@@ -167,7 +163,7 @@ class Damier {
 
     getArmeDegat() {
         let armePointOfPlayerActif = this.getActivePlayer().arme.degat;
-        console.log(armePointOfPlayerActif)
+        return armePointOfPlayerActif
     }
 
     resetMovableCells() {
@@ -244,7 +240,7 @@ class Damier {
                 }
                 if (cell.terrain != vide) {
                     colonne = `<td id="${celluleID}"> 
-                    <img src='image/${ImageMur}'>
+                    <img src='image/${imageMur}'>
                 </td>`
                 }
                 ligne += colonne
